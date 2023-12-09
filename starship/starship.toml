@@ -1,0 +1,99 @@
+# LEFT PROMPT
+format = """
+[](#25272a)\
+$conda\
+[](bg:#830c0b fg:#25272a)\
+$username\
+[](bg:#da8041 fg:#830c0b)\
+$directory\
+[](fg:#da8041 bg:#b09a5e)\
+$git_branch\
+$git_status\
+[](bg:#9eadc2 fg:#b09a5e)\
+$c\
+$cmake\
+$python\
+$julia\
+[](fg:#9eadc2 bg:#97837c)\
+$battery\
+[ ](fg:#97837c)
+[   └─ 🚀 ](bold white)
+"""
+
+add_newline = false 
+
+# Conda
+[conda]
+ignore_base = false
+style = "bold bg:#25272a fg:#ffffff"
+symbol = " 🐍"
+format = "[$symbol $environment]($style)"
+
+# Username
+[username]
+show_always = true
+style_user = "bold bg:#830c0b fg:#ffffff"
+format = "[ $user ]($style)"
+
+# Path
+[directory]
+truncation_length = 1
+home_symbol = " "
+style = "bold bg:#da8041 fg:#000000"
+format = "[ $path]($style)"
+
+[directory.substitutions]
+"Downloads" = " " 
+"Research" = " "  
+"Libraries" = " " 
+
+# Git
+[git_branch]
+always_show_remote = true
+symbol = "  "
+style = "bold bg:#b09a5e fg:#000000"
+format = "[ $symbol$branch(:$remote_branch) ]($style)"
+
+[git_status]
+style = "bold bg:#b09a5e fg:#000000"
+up_to_date = '✓'
+staged = '++${$count}'
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+format = '[\[$all_status$ahead_behind\] ]($style)'
+
+# C++
+[c]
+symbol = " "
+style = "bg:#9eadc2 fg:#000000"
+format = '[ $symbol ($version) ]($style)'
+
+# CMake
+[cmake]
+symbol = "△ "
+style = "bg:#9eadc2 fg:#000000"
+format = '[ $symbol ($version) ]($style)'
+
+# Python 
+[python]
+symbol = " "
+style = "bg:#9eadc2 fg:#000000"
+format = '[ $symbol ($version) ]($style)'
+
+# Julia 
+[julia]
+symbol = " "
+style = "bg:#9eadc2 fg:#000000"
+format = '[ $symbol ($version) ]($style)'
+
+#Battery
+[battery]
+full_symbol = "  "
+charging_symbol = "  "
+discharging_symbol = "  "
+format = "[$symbol$percentage]($style)"
+
+[[battery.display]]
+threshold = 99 
+style = "bg:#97837c fg:#000000"

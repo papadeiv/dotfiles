@@ -1,0 +1,177 @@
+\RequirePackage{float}
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage[dvips]{epsfig}
+\RequirePackage{fancyhdr}
+\RequirePackage{cancel}
+\RequirePackage{hyperref}
+\RequirePackage{cleveref}
+\RequirePackage{svg}
+\RequirePackage{caption}
+\RequirePackage{subfigure}
+\RequirePackage{listings}
+\RequirePackage{fancybox}
+\RequirePackage{algorithm2e}
+\RequirePackage{lmodern}
+\RequirePackage{algpseudocode}
+\RequirePackage{tcolorbox}
+\RequirePackage{multirow}
+
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{subfiles}
+
+% Custom fonts
+% https://tug.org/FontCatalogue/
+% https://tug.org/fonts/fontinstall.html
+
+\DeclareFixedFont{\RM}{T1}{ptm}{b}{n}{2cm}
+
+% Custom sections style
+\RequirePackage{titlesec}
+\titleformat{\section}
+{\normalfont\LARGE\bfseries}
+{}{0em}{}
+\titlespacing{\section}{0pt}{15pt}{2.5pt}
+
+% Custom sections style
+\RequirePackage{titlesec}
+\titleformat{\subsection}
+{\normalfont\Large\bfseries}
+{}{0em}{}
+\titlespacing{\subsection}{0pt}{15pt}{2.5pt}
+
+% Custom sections style
+\RequirePackage{titlesec}
+\titleformat{\subsubsection}
+{\normalfont\large\bfseries}
+{}{0em}{}
+\titlespacing{\subsection}{0pt}{15pt}{2.5pt}
+
+% Personalised colours
+\RequirePackage[dvipsnames]{xcolor}
+\definecolor{SublimeBG}{HTML}{282923}
+\definecolor{SublimeMagenta}{HTML}{F42470}
+\definecolor{SublimeGreen}{HTML}{A4DD2B}
+\definecolor{SublimeYellow}{HTML}{E7DB74}
+\definecolor{SublimeBlue}{HTML}{62CFE4}
+\definecolor{SublimePurple}{HTML}{AC80FF}
+
+% Custom commands
+\newcommand{\newprime}[1]{#1'}
+\newcommand{\pprime}[1]{#1''}
+\newtcbox{\hl}[1][Yellow]{colback=#1!40!white,colframe=white,boxrule=0pt,frame hidden,on line,arc=2pt,top=0pt,bottom=0pt,left=0pt,right=0pt}
+\newtcbox{\boxx}[1][Apricot]{colback=#1!70!white,colframe=black,boxrule=.5pt,on line,arc=0pt,top=0pt,bottom=0pt,left=0pt,right=0pt}
+
+% Custom environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{observation}{Observation}[section]
+\theoremstyle{plain}
+\newtheorem{corollary}{Corollary}[section]
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{plain}
+\newtheorem*{proposition*}{Proposition}
+\theoremstyle{plain}
+\newtheorem*{remark*}{Remark}
+
+\newcounter{exercise}[section]
+\newenvironment{exercise}[2][]
+{
+        \refstepcounter{exercise} \boxx{\theexercise} #2 \medskip\hrule
+}
+{
+       \hfill\qedsymbol
+}
+
+% TColorBox: Theorems
+\tcbuselibrary{theorems}
+
+% STYLE: THEOREMS 
+\newtcbtheorem[number within=section]{theorem}{Theorem}%
+{colback=Gray!15,colframe=Gray!35!black,arc=0pt,fonttitle=\bfseries,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
+
+% STYLE: EXAMPLES 
+\newtcbtheorem[number within=section]{example}{Example}%
+{colback=Gray!15,colframe=Gray!15!Black,arc=0pt,fonttitle=\bfseries,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
+
+% STYLE: INTERPRETATION 
+\newtcbtheorem[]{interpretation}{In plain words...}%
+{enhanced jigsaw,opacityback=0.5,interior style={left color=ProcessBlue, right color=Dandelion},colframe=Fuchsia,arc=2pt,fonttitle=\bfseries,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
+
+% Unified Model Language for class inheritance and collab diagrams
+\RequirePackage[simplified,school]{pgf-umlcd}
+\renewcommand{\umltextcolor}{black}
+\renewcommand{\umlfillcolor}{Apricot}
+\renewcommand{\umldrawcolor}{black}
+
+% Define nested lists bullets' style
+\renewcommand{\labelitemi}{\color{black} $\blacktriangleright $}
+\renewcommand{\labelitemii}{\color{black} $\blacksquare$}
+\renewcommand{\labelitemiii}{\color{black} $\bullet$}
+
+% TColorBox: Code listings
+%\RequirePackage[listings]{tcolorbox}
+\tcbuselibrary{listings}
+
+
+% LISTING STYLE: SUBLIME C++ 
+\lstdefinestyle{SublimeCpp}{language=C++,
+                          backgroundcolor=\color{SublimeBG},
+                          basicstyle=\ttfamily\footnotesize\color{white},
+                          commentstyle=\color{lightgray},
+                          moredelim=**[is][\color{SublimeGreen}]{@}{@},
+                          moredelim=**[is][\color{SublimeBlue}]{@@}{@@},
+                          moredelim=**[is][\color{SublimeMagenta}]{£}{£},
+                          moredelim=**[is][\color{SublimePurple}]{**}{**},
+                          emphstyle={\color{SublimeBlue}},
+                          emph={int,char,double,float,unsigned,void,bool,return},
+                          stringstyle=\color{SublimeYellow},
+                          numberstyle=\ttfamily\tiny\color{lightgray},
+                          numbers=left,                    
+                          numbersep=5pt,
+                          breaklines=true,
+                          postbreak=\mbox{\textcolor{white}{$\hookrightarrow$}\space},
+                          breakatwhitespace=false,             
+                          captionpos=b,                    
+                          keepspaces=true,
+                          showspaces=false,                
+                          showstringspaces=false,
+                          showtabs=false,                  
+                          tabsize=2
+}
+
+% LISTING STYLE: SUBLIME Python 
+\lstdefinestyle{SublimePython}{language=Python,
+                          backgroundcolor=\color{darkgray},
+                          basicstyle=\ttfamily\footnotesize\color{white},
+                          commentstyle=\color{lightgray},
+                          moredelim=**[is][\color{SublimeGreen}]{@}{@},
+                          moredelim=**[is][\color{SublimeBlue}]{@@}{@@},
+                          moredelim=**[is][\color{SublimeMagenta}]{*}{*},
+                          moredelim=**[is][\color{SublimePurple}]{**}{**},
+                          emphstyle={\color{SublimeBlue}},
+                          emph={},
+                          stringstyle=\color{SublimeYellow},
+                          numberstyle=\ttfamily\tiny\color{lightgray},
+                          numbers=left,                    
+                          numbersep=5pt,
+                          breaklines=true,
+                          postbreak=\mbox{\textcolor{white}{$\hookrightarrow$}\space},
+                          breakatwhitespace=false,             
+                          captionpos=b,                    
+                          keepspaces=true,
+                          showspaces=false,                
+                          showstringspaces=false,
+                          showtabs=false,                  
+                          tabsize=2
+}
+
+% Define unique listing style for all custom-defined styles
+\lstdefinestyle{Multiple}{style=SublimeCpp, style=SublimePython}
+
+% Set custom-style for listing
+\lstset{style=Multiple}
+\tcbuselibrary{listings,skins}
