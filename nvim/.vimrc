@@ -34,3 +34,7 @@ let g:vimtex_compiler_method = 'latexrun'
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
 let maplocalleader = ","
+
+" Open zotcite PDFs using zathura and not zotero built-in PDF viewer
+let zotcite_wait_attachment = 0
+let zotcite_open_in_zotero = 1

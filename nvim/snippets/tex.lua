@@ -277,6 +277,12 @@ return {
       {i(1)}
     )
   ),
+  s({trig = "code", dscr = "Command"},
+    fmta(
+      "\\hl[Gray]{\textcolor{Mulberry}{<>}}<>",
+      {i(1), i(2)}
+    )
+  ),
 
   -- Envs shorthands
   s({trig="env", dscr = "General environment"},
@@ -313,6 +319,12 @@ return {
         <>
       ]],
       {i(1), i(2), i(3), i(4)}
+    )
+  ),
+  s({trig="snip", dscr = "Snippets environment"},
+    fmta(
+    "\\lstinputlisting[language=<>]{snippets/<>}<>",
+      {i(1), i(2), i(3)}
     )
   ),
   s({trig = "eq", dscr = "Numbered equation"},
