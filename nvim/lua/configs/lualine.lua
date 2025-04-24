@@ -1,17 +1,18 @@
-local custom_theme = require'lualine.themes.base16'
+local custom_theme = require'lualine.themes.palenight'
 
 custom_theme.normal.c.bg = 'None'
 
 require('lualine').setup{
         options = {
                 icons_enabled = true,
-                theme = custom_theme,
-                component_separators = {left = ' ', right = '|'},
-                section_separators = {left = '', right = ' '},
+                component_separators = {left = '', right = '|'},
+                section_separators = {left = '', right = ''},
                 globalstatus = true,
         },
         sections = {
-                lualine_a = {'mode'},
+                lualine_a = {{'mode', 
+                               separator = {right = ''}
+                            }},
                 lualine_b = {{'filename', 
                                path = 0,
                                symbols = {modified = '󰝦 ',
@@ -19,13 +20,14 @@ require('lualine').setup{
                                           unnamed = ' 󱍢 ',
                                           newfile = '󰎔 ',
                                          }, 
+                               separator = {right = ''}
                             }},
                 lualine_c = {{'filetype',
                                color = {fg = '#ffffff'}
                             }},
                 lualine_x = {{'fileformat',
                                color = {fg = '#ffffff'},
-                               symbols = {unix = ' '}}},
+                               symbols = {unix = ' '}}},
                 lualine_y = {'branch', 
                             {'diff',
                               colored = true,
@@ -37,7 +39,7 @@ require('lualine').setup{
                                 added = '+',
                                 modified = '~',
                                 removed = 'x'
-                              }
+                              },
                             }},
 
                 lualine_z = {'progress',

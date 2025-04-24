@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   -- Whichkey
   use 'folke/which-key.nvim'
+  -- Catppuccin color theme
+  use { "catppuccin/nvim", as = "catppuccin" }
   -- Nord color theme
   use 'shaunsingh/nord.nvim'
   -- Onedark color theme

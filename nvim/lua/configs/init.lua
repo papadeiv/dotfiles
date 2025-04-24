@@ -1,6 +1,7 @@
 require("configs.nvim-tree")
 require("configs.whichkey")
-require("configs.kanagawa")
+require("configs.catppuccin")
+--require("configs.kanagawa")
 --require("configs.onedark")
 --require("configs.nord")
 require("configs.lualine")

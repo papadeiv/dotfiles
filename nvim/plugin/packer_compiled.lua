@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/papadeiv/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/papadeiv/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/papadeiv/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/papadeiv/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/papadeiv/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/papadeiv/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?.lua;/home/papadeiv/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?/init.lua;/home/papadeiv/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?.lua;/home/papadeiv/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/papadeiv/.cache/nvim/packer_hererocks/2.1.1741730670/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/papadeiv/.local/share/nvim/site/pack/packer/start/autoclose.nvim",
     url = "https://github.com/m4xshen/autoclose.nvim"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/papadeiv/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-zotcite"] = {
     loaded = true,
     path = "/home/papadeiv/.local/share/nvim/site/pack/packer/start/cmp-zotcite",
@@ -98,14 +103,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/papadeiv/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["mdpreview.nvim"] = {
-    config = { "\27LJ\2\2<\0\0\2\1\3\0\0066\0\0\0009\0\1\0-\1\0\0009\1\2\1B\0\2\1K\0\1\0\0À\bbuf\17preview_open\14mdpreview=\0\0\2\1\3\0\0066\0\0\0009\0\1\0-\1\0\0009\1\2\1B\0\2\1K\0\1\0\0À\bbuf\18preview_close\14mdpreview\1\1\1\6\0\b\0\0186\1\0\0009\1\1\0019\1\2\0019\2\3\0'\3\4\0003\4\5\0004\5\0\0B\1\5\0016\1\0\0009\1\1\0019\1\2\0019\2\3\0'\3\6\0003\4\a\0004\5\0\0B\1\5\0012\0\0€K\0\1\0\0\17PreviewClose\0\fPreview\bbuf!nvim_buf_create_user_command\bapi\bvimî\1\1\0\4\0\v\0\0156\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\0016\0\4\0009\0\5\0009\0\6\0'\1\a\0005\2\b\0003\3\t\0=\3\n\2B\0\3\1K\0\1\0\rcallback\0\1\0\2\fpattern\t*.md\tdesc'mdpreview: Create preview commands\rBufEnter\24nvim_create_autocmd\bapi\bvim\1\0\4\tport\3?\vfollow\2\19localhost_only\2\fbrowser\2\nsetup\14mdpreview\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/home/papadeiv/.local/share/nvim/site/pack/packer/opt/mdpreview.nvim",
-    url = "https://github.com/gnikdroy/mdpreview.nvim"
   },
   ["nord.nvim"] = {
     loaded = true,
@@ -160,13 +157,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Filetype lazy-loads
-time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'mdpreview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
-time([[Defining lazy-load filetype autocommands]], false)
-vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

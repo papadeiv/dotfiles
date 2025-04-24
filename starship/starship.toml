@@ -1,61 +1,71 @@
 # LEFT PROMPT
 format = """
-[](#25272a)\
-$conda\
-[](bg:#830c0b fg:#25272a)\
+[](#cad3f5)\
+$os\
+[](bg:#c6a0f6 fg:#cad3f5)\
 $username\
-[](bg:#da8041 fg:#830c0b)\
+[](bg:#f5bde6 fg:#c6a0f6)\
 $directory\
-[](fg:#da8041 bg:#b09a5e)\
+[](fg:#f5bde6 bg:#a6da95)\
 $git_branch\
 $git_status\
-[](bg:#9eadc2 fg:#b09a5e)\
+[](bg:#f5a97f fg:#a6da95)\
 $c\
 $cmake\
 $python\
 $julia\
-[](fg:#9eadc2 bg:#97837c)\
+[](fg:#f5a97f bg:#ed8796)\
 $battery\
-[ ](fg:#97837c)
-[   └─ 🚀 ](bold white)
+[ ](fg:#ed8796)
+[  └─ .𖥔 ݁🪐 ˖ 🛸 .✦ ➤ ](bold white)
 """
-
+# [  └─ .𖥔 ݁ ˖🛸── .✦ ➤ ](bold white)
+# [  └─ 🌑🌒🌓🌕 ](bold white)
+# [  └─ ↟↟𓂃 ོ ☼𓂃↟ 𖠰𓂃 ོ𓂃 ](bold white)
 add_newline = false 
+
+# OS 
+[os]
+disabled = false
+style = "bold bg:#cad3f5 fg:#ffffff"
+
+[os.symbols]
+Arch = "🐧"
 
 # Conda
 [conda]
 ignore_base = false
 style = "bold bg:#25272a fg:#ffffff"
-symbol = " 🐍"
+symbol = "🐍"
 format = "[$symbol $environment]($style)"
 
 # Username
 [username]
 show_always = true
-style_user = "bold bg:#830c0b fg:#ffffff"
+style_user = "bold bg:#c6a0f6 fg:#1e2030"
 format = "[ $user ]($style)"
 
 # Path
 [directory]
 truncation_length = 1
-home_symbol = " "
-style = "bold bg:#da8041 fg:#000000"
+home_symbol = " "
+style = "bold bg:#f5bde6 fg:#1e2030"
 format = "[ $path]($style)"
 
 [directory.substitutions]
 "Downloads" = " " 
-"Research" = " "  
+"Notes" = " "  
 "Libraries" = " " 
 
 # Git
 [git_branch]
 always_show_remote = true
 symbol = "  "
-style = "bold bg:#b09a5e fg:#000000"
+style = "bold bg:#a6da95 fg:#1e2030"
 format = "[ $symbol$branch(:$remote_branch) ]($style)"
 
 [git_status]
-style = "bold bg:#b09a5e fg:#000000"
+style = "bold bg:#a6da95 fg:#1e2030"
 up_to_date = '✓'
 staged = '++${$count}'
 ahead = '⇡${count}'
@@ -66,25 +76,25 @@ format = '[\[$all_status$ahead_behind\] ]($style)'
 # C++
 [c]
 symbol = " "
-style = "bg:#9eadc2 fg:#000000"
+style = "bg:#f5a97f fg:#1e2030"
 format = '[ $symbol ($version) ]($style)'
 
 # CMake
 [cmake]
 symbol = "△ "
-style = "bg:#9eadc2 fg:#000000"
+style = "bg:#f5a97f fg:#1e2030"
 format = '[ $symbol ($version) ]($style)'
 
 # Python 
 [python]
 symbol = " "
-style = "bg:#9eadc2 fg:#000000"
+style = "bg:#f5a97f fg:#1e2030"
 format = '[ $symbol ($version) ]($style)'
 
 # Julia 
 [julia]
 symbol = " "
-style = "bg:#9eadc2 fg:#000000"
+style = "bg:#f5a97f fg:#1e2030"
 format = '[ $symbol ($version) ]($style)'
 
 #Battery
@@ -96,4 +106,4 @@ format = "[$symbol$percentage]($style)"
 
 [[battery.display]]
 threshold = 99 
-style = "bg:#97837c fg:#000000"
+style = "bg:#ed8796 fg:#1e2030"
