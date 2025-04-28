@@ -12,8 +12,9 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h:\[\033[01;34m\] \W \
 # Dotfiles git config
 alias config='/usr/bin/git --git-dir=~/.cfg/ --work-tree=~/.config/'
 
-# Arduino
-alias setport='sudo chmod a+rw /dev/ttyACM0'
+# USB mounting and unmounting
+alias mountusb='sudo mount -t ntfs-3g /dev/sdb1 /mnt/tmp'
+alias unmount='sudo umount /mnt/tmp'
 
 # OpenFOAM and ITHACA-FV
 alias openfoam='source ~/Libraries/OpenFOAM-v2212/etc/bashrc && cd $WM_PROJECT_DIR/run'
@@ -37,16 +38,6 @@ alias showme='kitty +kitten icat'
 # Frequently visited directories
 alias home='cd ~'
 alias ds='cd ~/Libraries/2D2S'
-
-# APT
-alias search='sudo apt-cache search'
-alias list='sudo apt list --installed'
-alias update='sudo apt-get update -y'
-alias upgrade='sudo apt-get upgrade'
-alias install='sudo apt-get install'
-alias remove='sudo apt remove'
-alias purge="sudo apt purge"
-alias clean="sudo apt autoremove && sudo apt clean"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
