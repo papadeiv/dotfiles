@@ -82,7 +82,7 @@ sudo yay -S base-devel juliaup cmake extra-cmake-modules openssH man qt6-tools g
 ```
 research's tools
 ```bash
-sudo yay -S zathura xournalpp 
+sudo yay -S zathura zathura-pdf-mupdf zathura-djvu zathura-ps xournalpp 
 ```
 multimedia packages
 ```bash

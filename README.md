@@ -20,7 +20,7 @@
 #### Rofi
 - `Alt + Space` = launch
 
-### Neovim keybindings, snippets and shortcuts
+### [Neovim](./instructions/Neovim.md) keybindings, snippets and shortcuts
 
 #### Normal mode
 - <leader>w = write/save file
