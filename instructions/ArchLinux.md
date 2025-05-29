@@ -99,8 +99,13 @@ timedatectl status
 timedatectl list-timezones 
 timedatectl set-timezone your_zone/your_subzone 
 ```
+7. Install the bluetooth utilities
+```bash
+sudo yay -Sy bluez bluez-utils bluez-deprecated-tools
+```
+Run `lsmod` to check that the relative kernel module is loaded (you should look for `bluetooth` and the module is named `btusb`) and then enable it `systemctl start bluetooth.service`.
 
-7. Update once more and reboot
+8. Update once more and reboot
 ```bash
 sudo yay -Syu
 reboot

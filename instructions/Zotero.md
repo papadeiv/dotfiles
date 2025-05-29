@@ -9,7 +9,9 @@ untar -xf Zotero-linux64.tar
 ```bash
 mv Zotero_linux_64 ~/.config/zotero/
 ```
-3. Launch the app and log-in to sync with the data storage: Edit -> Preferences -> Sync
-4. Click on the Refresh button (upper right corner)
-5. Specify the Data Directory Location to be `~/Research/Library`: Edit -> Preferences -> Advanced -> Files and Folders
-6. Once the link is created move all the content from `~/Zotero` to `~/Research/Library`
+
+## Configuration
+1. Launch the app and log-in to sync with the data storage: Edit -> Preferences -> Sync
+2. Click on the Refresh button (upper right corner)
+3. Specify the Data Directory Location to be `~/Notes/Library`: Edit -> Preferences -> Advanced -> Files and Folders
+4. Once the link is created move all the content from `~/Zotero` to `~/Notes/Library`
