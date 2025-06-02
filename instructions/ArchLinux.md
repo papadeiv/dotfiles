@@ -78,32 +78,33 @@ sudo yay -S extra/otf-geist-mono-nerd extra/texlive-fontsextra extra/xorg-fonts-
 ```
 developer's tools
 ```bash
-sudo yay -S base-devel juliaup cmake extra-cmake-modules openssH man qt6-tools gparted ntfs-3g
+sudo yay -S base-devel juliaup cmake extra-cmake-modules openssh man qt6-tools gparted ntfs-3g
 ```
 research's tools
 ```bash
-sudo yay -S zathura zathura-pdf-mupdf zathura-djvu zathura-ps xournalpp 
+sudo yay -S texlive-basic texlive-bibtexextra texlive-binextra texlive-fontsextra texlive-fontsrecommended texlive-fontutils texlive-latex texlive-latexextra texlive-latexrecommended texlive-mathscience texlive-pictures texlive-publishers zathura zathura-pdf-mupdf zathura-djvu zathura-ps xournalpp 
 ```
 multimedia packages
 ```bash
-sudo yay -S spotify spicetify-cli vlc flameshot 
+sudo yay -S spotify spicetify-cli vlc
 ```
 Upon installing `Spotify` you'll need to go through the T&Cs. To accept immediately press `Shift + q`. Finally create the `/mnt/tmp/` directory for mounting/unmounting USB external devices
 ```bash
 sudo mkdir /mnt/tmp
 ```
 
-6. Set the correct timezone if wrong
+6. Install the bluetooth utilities
+```bash
+sudo yay -Sy bluez bluez-utils bluez-deprecated-tools
+```
+Run `lsmod` to check that the relative kernel module is loaded (you should look for `bluetooth` and the module is named `btusb`) and then enable it `systemctl start bluetooth.service`.
+
+7. Set the correct timezone if wrong
 ```bash
 timedatectl status
 timedatectl list-timezones 
 timedatectl set-timezone your_zone/your_subzone 
 ```
-7. Install the bluetooth utilities
-```bash
-sudo yay -Sy bluez bluez-utils bluez-deprecated-tools
-```
-Run `lsmod` to check that the relative kernel module is loaded (you should look for `bluetooth` and the module is named `btusb`) and then enable it `systemctl start bluetooth.service`.
 
 8. Update once more and reboot
 ```bash
@@ -129,5 +130,4 @@ Follow the steps below in order: each step has multiple choices depending on you
   - dmenu
 - Install and configure [Julia](Julia.md)
 - Configure the [SSH](SSH.md) connection
-- Configure the [LaTeX](LaTeX.md) compiler
 - Configure [Spicetify](Spicetify.md)

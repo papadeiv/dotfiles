@@ -1,0 +1,23 @@
+\documentclass[./main.tex]{subfiles}
+\begin{document}
+
+% Slide # 1
+\begingroup
+% Hide the footer for the title slide
+\setbeamertemplate{footline}{}
+% Title slide
+\begin{frame}[label=slide01]
+        % Background image
+        \begin{tikzpicture}[remember picture,overlay]
+                \node[above right,inner sep=0pt] at (current page.south west)
+                {
+                        {\transparent{0.25}\includegraphics[height=\paperheight,width=\paperwidth]{../figures/background.jpg}}
+                };
+        \end{tikzpicture}
+
+        % Display the title page
+        \titlepage
+\end{frame}
+\endgroup
+
+\end{document}

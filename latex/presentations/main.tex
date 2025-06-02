@@ -1,0 +1,34 @@
+\documentclass{beamer}
+\usepackage{style}
+
+% Title
+\title{A beamer template for minimalist presentations}
+% Authors
+\author{Davide~Papapicco\inst{*} \\ \medskip Name~Surname\inst{*} \and Name~Surname\inst{$\dagger$}}
+% Affitiliations
+\institute{\inst{*}Department of Gummybears, Faculty of Candies, University of Willy Wonka\and \inst{$\dagger$}The Galactic Republic}
+% Logos
+\titlegraphic{
+        \begin{tikzpicture}[overlay, remember picture]
+                \node at (-1.5,0){
+                        \includegraphics[width=3cm]{./figures/logo_1.png}
+                };
+                \node at (+2.5,0){
+                        \includegraphics[width=4cm]{./figures/logo_2.png}
+                };
+        \end{tikzpicture}
+}
+
+% Presentation
+\begin{document}
+\subfile{./slides/slide01}
+\subfile{./slides/slide02}
+\subfile{./slides/slide03}
+\subfile{./slides/slide04}
+\subfile{./slides/slide05}
+\subfile{./slides/slide06}
+\subfile{./slides/slide07}
+\subfile{./slides/slide08}
+\subfile{./slides/slide09}
+\subfile{./slides/slide10}
+\end{document}

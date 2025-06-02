@@ -1,0 +1,26 @@
+\documentclass[./main.tex]{subfiles}
+\begin{document}
+
+% Slide # 8
+\begin{frame}[label=slide08]
+        % Title
+        \frametitle{Eighth slide}
+
+        % Body
+        This is an example text to show how the body of the slide is rendered on the final pdf.
+        \begin{tabular*}{\textwidth}{@{\extracolsep\fill}lcccc}
+                \toprule
+                 & Column 1 & Column 2 & Column 3 & Column 4\\
+                \midrule
+                Line 1 & A  & \al[1]{B} & C  & C \\
+                Line 2 & D & E & F & \alg[2]{C} \\ 
+                Line 3 & \al[1]{G} & H & I & \alg[2]{C} \\ 
+                \midrule
+                Line 4 & J & K & L & \alg[2]{C} \\ 
+                \midrule
+                Line 5 & M & N & O & \alg[2]{C} \\ 
+                \bottomrule
+        \end{tabular*}
+\end{frame}
+
+\end{document}

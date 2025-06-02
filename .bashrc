@@ -25,11 +25,11 @@ alias foamvideo='cd animation && ffmpeg -framerate 50 -i 's%3d.png' animation.mp
 alias itclear='rm -r ITHACAoutput'
 alias itbuild='touch ITHACAoutput/Offline/offline.foam && touch ITHACAoutput/Online/online.foam && touch ITHACAoutput/POD/modes.foam'
 alias sweep='wclean && itclear && foamclear'
+
 # Zotero
 alias zotero='cd ~/.config/zotero/ && zotero'
 
-# NeoVim and LaTex
-# Run 'install xclip' to install a Neovim clipboard provider for '"+y' and '"+p' bindings
+# LaTex
 alias inittex='cp ~/.config/latex/{style.sty,main.tex} . && cp -r ~/.config/latex/sections .'
 
 # Kitty image renderer
@@ -37,7 +37,7 @@ alias showme='kitty +kitten icat'
 
 # Frequently visited directories
 alias home='cd ~'
-alias ds='cd ~/Libraries/2D2S'
+alias ds='cd ~/Libraries/STEWS'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
