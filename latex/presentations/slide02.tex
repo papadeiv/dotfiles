@@ -7,19 +7,23 @@
         \frametitle{Second slide}
 
         % Body
+        \footnotesize
         This is an example text to show how the body of the slide is rendered on the final pdf.
         \begin{definition}[Example definition]
-                A rational number $n$ is any number\footnote{\url{https://neverssl.com}} that can be written as the fraction of two integres.
+                A rational number $n$ is any number that can be written as the fraction of two integres.
         \end{definition} \pause
         \begin{theorem}[Example theorem]
-        This is definitely true \cite{kramers40}
+                This is definitely true \footnotemark[1]
         \begin{equation*}
                 \sum_k\mathcal{S}_{k_x}(z) \approx \frac{S(z)^x}{k / 23 -\zeta\gamma [45- S(z)] + \ln(y) - j^2+x(l)}
         \end{equation*}
         \end{theorem} \pause
         \begin{example}[Example example]
-             I dunno man \cite{kuehn11}.
+                I dunno man \footnotemark[2].
         \end{example}
+
+        \footnotetext[1]{\vspace{0cm}\tiny Kramers, H., Physica, 7 (1940)}
+        \footnotetext[2]{\vspace{-0.5cm}\tiny Kuehn, C., Physica D, 240 (2011)}
 \end{frame}
 
 \end{document}

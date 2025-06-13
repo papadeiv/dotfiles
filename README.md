@@ -80,6 +80,14 @@ killall <name_of_the_process>
 sudo truncate -s 0 /var/log/syslog
 ```
 
+### CPU overloading: kf6 baloo 
+1. Disable the indexer 
+```bash
+balooctl6 suspend
+balooctl6 disable 
+balooctl6 purge 
+```
+
 ### Black screen after reboot (Arch)
 You need to revert some of the changes prior to the reboot (presumably a theme of the display manager in KDE Plasma 6)
 1. Login to a `tty` by pressing `Ctrl + Alt + F2` or `Ctrl + Alt + F6`

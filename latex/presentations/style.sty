@@ -54,10 +54,16 @@
 % Header 
 \setbeamertemplate{headline}{}
 % Footer
+\renewcommand{\thefootnote}{[\arabic{footnote}]}
+\renewcommand{\thempfootnote}{[\arabic{mpfootnote}]}
+\makeatletter
+\let\oldfootnoterule=\footnoterule
+\def\footnoterule{\moveright8cm\vbox{\oldfootnoterule}}
+\def\@makefntext#1{\parindent 1em\noindent \hskip7.85cm \hb@xt@ 1.8em{\hss \@makefnmark }#1}
 \setbeamertemplate{footline}
 {
         \begin{beamercolorbox}{page number in head/foot}
-                {\hspace{6pt}\footnotesize\bfseries\insertframenumber}\vskip5pt
+                {\hspace{6pt}\footnotesize\bfseries\insertframenumber}\vskip7pt
         \end{beamercolorbox}
 }
 % Navigation bar

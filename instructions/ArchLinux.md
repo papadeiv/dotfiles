@@ -86,7 +86,7 @@ sudo yay -S texlive-basic texlive-bibtexextra texlive-binextra texlive-fontsextr
 ```
 multimedia packages
 ```bash
-sudo yay -S spotify spicetify-cli vlc
+sudo yay -S spotify spicetify-cli shotwell vlc
 ```
 Upon installing `Spotify` you'll need to go through the T&Cs. To accept immediately press `Shift + q`. Finally create the `/mnt/tmp/` directory for mounting/unmounting USB external devices
 ```bash
