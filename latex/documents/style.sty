@@ -3,23 +3,112 @@
 \RequirePackage[dvips]{epsfig}
 \RequirePackage{fancyhdr}
 \RequirePackage{cancel}
-\RequirePackage{hyperref}
+\RequirePackage[colorlinks = true,
+                linkcolor = blue,
+                urlcolor  = blue,
+                citecolor = blue,
+                anchorcolor = blue]{hyperref}
 \RequirePackage{cleveref}
 \RequirePackage{svg}
 \RequirePackage{caption}
-\RequirePackage{subfigure}
+\RequirePackage{subcaption}
 \RequirePackage{listings}
 \RequirePackage{fancybox}
 \RequirePackage{algorithm2e}
+\RequirePackage{array}
 \RequirePackage{lmodern}
 \RequirePackage{algpseudocode}
 \RequirePackage{tcolorbox}
 \RequirePackage{multirow}
+\RequirePackage{efbox}
 
-\usepackage{biblatex}
-\addbibresource{references.bib}
+% Display the labels of the environments (to turn off uncomment 'final' to the optional arguments)
+\RequirePackage[%final,
+                inline]{showlabels}
+\renewcommand{\showlabelsetlabel}[1]{\raise0.5ex\hbox{\efbox{\showlabelfont{\ttfamily\tiny\color{red} #1}}}}
+\def\showlabelrefline{\hrule width 0pt height 0pt depth 0pt}
 
+% Custom authors block
+\RequirePackage{authblk}
+\renewcommand{\Authands}{ and }
+
+% Custom referencing style: truncates authours' first names to their initals, print all authours up to a maximum of 10, ignore the url and isbn/issn fields of an item
+\usepackage[firstinits=true,sorting=yant,maxbibnames=10,url=false,isbn=false]{biblatex}
+% Render all-capitalised titles in sentence case (only the first letter is capitalised)
+\DeclareFieldFormat*{titlecase}{\MakeSentenceCase{#1}}
+% Print the author's family name first and given name's initals after
+\DeclareNameAlias{author}{family-given}
+% Remove the "In" preceeding the journal's title 
+\renewbibmacro{in:}{}
+% Change the format of the doi filed by hyperlinking it instead of printing the full string
+\DeclareFieldFormat{doi}{%
+  \ifhyperref
+          {\href{https://doi.org/#1}{\texttt{DOI}}}
+    {\nolinkurl{#1}}
+}
+
+% Sort items by ascending order (by year)
+\DeclareSortingScheme{yant}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort[direction=ascending]{
+    \field[strside=left,strwidth=4]{sortyear}
+    \field[strside=left,strwidth=4]{year}
+    \literal{9999}
+  }
+  \sort[direction=ascending]{
+    \field{month}
+    \literal{9999}
+  }
+  \sort{
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort{
+    \field{sorttitle}
+    \field{title}
+  }
+}
+% Put a comma after the journal's title and the volume/issue
+\renewbibmacro*{journal+issuetitle}{%
+  \usebibmacro{journal}%
+  \setunit*{\addcomma\space}%
+  \iffieldundef{series}
+    {}
+    {\newunit
+     \printfield{series}%
+     \setunit{\addspace}}%
+  \usebibmacro{volume+number+eid}%
+  \setunit{\addspace}%
+  \usebibmacro{issue+date}%
+  \setunit{\addcolon\space}%
+  \usebibmacro{issue}%
+  \newunit}
+% Print the volume/issue without the number
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
+% Include the bib source file 
+\addbibresource{documentation.bib}
+\addbibresource{literature.bib}
+
+% Use modular subfiles
 \usepackage{subfiles}
+
+% Stick footnotes at the bottom of the page (dunno why this is not the fucking default but yeah whatever)
+\usepackage[bottom]{footmisc}
+
+% Custom typesetting operators
+\DeclareMathOperator*{\argmin}{argmin}
 
 % Custom fonts
 % https://tug.org/FontCatalogue/
@@ -31,25 +120,32 @@
 \RequirePackage{titlesec}
 \titleformat{\section}
 {\normalfont\LARGE\bfseries}
-{}{0em}{}
+{\thesection}{0.75em}{}
 \titlespacing{\section}{0pt}{15pt}{2.5pt}
 
 % Custom sections style
 \RequirePackage{titlesec}
 \titleformat{\subsection}
 {\normalfont\Large\bfseries}
-{}{0em}{}
+{\thesubsection}{0.75em}{}
 \titlespacing{\subsection}{0pt}{15pt}{2.5pt}
 
 % Custom sections style
 \RequirePackage{titlesec}
 \titleformat{\subsubsection}
 {\normalfont\large\bfseries}
+{\thesubsubsection}{0.75em}{}
+\titlespacing{\subsection}{0pt}{15pt}{2.5pt}
+
+% Custom sections style
+\RequirePackage{titlesec}
+\titleformat{\paragraph}
+{\normalfont\large\bfseries}
 {}{0em}{}
 \titlespacing{\subsection}{0pt}{15pt}{2.5pt}
 
 % Personalised colours
-\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[table, dvipsnames]{xcolor}
 \definecolor{SublimeBG}{HTML}{282923}
 \definecolor{SublimeMagenta}{HTML}{F42470}
 \definecolor{SublimeGreen}{HTML}{A4DD2B}
@@ -92,14 +188,33 @@
 % STYLE: THEOREMS 
 \newtcbtheorem[number within=section]{theorem}{Theorem}%
 {colback=Gray!15,colframe=Gray!35!black,arc=0pt,fonttitle=\bfseries,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
+\newtcbtheorem[number within=section]{theorem_continued}{Continued from Theorem}%
+{colback=Gray!15,colframe=Gray!35!black,arc=0pt,fonttitle=\bfseries,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
 
 % STYLE: EXAMPLES 
 \newtcbtheorem[number within=section]{example}{Example}%
 {colback=Gray!15,colframe=Gray!15!Black,arc=0pt,fonttitle=\bfseries,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
+%{title={},colback=Gray!15,colframe=Gray!15!Black,arc=0pt,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
+\newtcolorbox{example_continued}{
+        %colback=red!5!white,
+        colback=Gray!15,
+        colframe=Gray!15!Black,
+        arc=0pt,
+        left=5pt,
+        right=5pt,
+        leftrule=1pt,
+        rightrule=1pt,
+        bottomrule=.5pt,
+        top=4pt,
+        bottom=1pt
+        %colframe=red!75!black
+}
 
 % STYLE: INTERPRETATION 
-\newtcbtheorem[number within=section]{interpretation}{Question}%
+\newtcbtheorem[]{interpretation}{Highlight}%
 {enhanced jigsaw,opacityback=0.5,interior style={left color=ProcessBlue, right color=Dandelion},colframe=Fuchsia,arc=2pt,fonttitle=\bfseries,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
+\newtcbtheorem[]{interpretation_continued}{Continued}%
+{enhanced jigsaw,opacityback=0.5,interior style={left color=ProcessBlue, right color=Dandelion},colframe=Fuchsia,arc=2pt,left=5pt,right=5pt,leftrule=1pt,rightrule=1pt,bottomrule=.5pt,top=4pt,bottom=1pt}{}
 
 % Unified Model Language for class inheritance and collab diagrams
 \RequirePackage[simplified,school]{pgf-umlcd}

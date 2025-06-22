@@ -10,7 +10,17 @@
 
 \usepackage{style}
 
+\title{\textbf{Title}}
+\author{}
+\date{}
+
 \begin{document}
-\subfile{sections/000}
-\printbibliography
+
+\maketitle
+
+% Name of the Section 
+\subfile{sections/sec:label}
+% Literature
+\printbibliography[title=Literature title, type=article]
+
 \end{document}

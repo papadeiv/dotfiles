@@ -68,45 +68,52 @@ cd ../ && rm -r yay-bin
 ```bash
 sudo yay -Syu
 ```
-5. Install a bunch of stuff: browser, editor, terminal, shell prompt and app launcher
+5. Install a bunch of stuff: 
+  - browser, editor, terminal, shell prompt and app launcher
+  ```bash
+  sudo yay -S google-chrome neovim wl-clipboard python-pynvim kitty extra/starship rofi-wayland 
+  ```
+  - [nerd fonts](https://github.com/ryanoasis/nerd-fonts) icons and logos
+  ```bash
+  sudo yay -S extra/otf-geist-mono-nerd extra/texlive-fontsextra extra/xorg-fonts-misc extra/freetype2 extra/adwaita-icon-theme extra/bdf-unifont aur/siji-git extra/ttf-linux-libertine 
+  ```
+  - code development tools
 ```bash
-sudo yay -S google-chrome neovim wl-clipboard python-pynvim kitty extra/starship rofi-wayland 
+sudo yay -S base-devel juliaup cmake extra-cmake-modules openssh man qt6-tools gparted ntfs-3g kio-extras
 ```
-[nerd fonts](https://github.com/ryanoasis/nerd-fonts) icons and logos
-```bash
-sudo yay -S extra/otf-geist-mono-nerd extra/texlive-fontsextra extra/xorg-fonts-misc extra/freetype2 extra/adwaita-icon-theme extra/bdf-unifont aur/siji-git extra/ttf-linux-libertine 
-```
-developer's tools
-```bash
-sudo yay -S base-devel juliaup cmake extra-cmake-modules openssh man qt6-tools gparted ntfs-3g
-```
-research's tools
-```bash
-sudo yay -S texlive-basic texlive-bibtexextra texlive-binextra texlive-fontsextra texlive-fontsrecommended texlive-fontutils texlive-latex texlive-latexextra texlive-latexrecommended texlive-mathscience texlive-pictures texlive-publishers zathura zathura-pdf-mupdf zathura-djvu zathura-ps xournalpp 
-```
-multimedia packages
-```bash
-sudo yay -S spotify spicetify-cli shotwell vlc
-```
-Upon installing `Spotify` you'll need to go through the T&Cs. To accept immediately press `Shift + q`. Finally create the `/mnt/tmp/` directory for mounting/unmounting USB external devices
+  - research tools
+  ```bash
+  sudo yay -S okular zathura zathura-pdf-mupdf zathura-djvu zathura-ps xournalpp
+  ```
+  - LaTeX and Biber 
+  ```bash
+  sudo yay -S texlive-basic texlive-bibtexextra texlive-binextra texlive-fontsextra texlive-fontsrecommended texlive-fontutils texlive-latex texlive-latexextra texlive-latexrecommended texlive-mathscience texlive-pictures texlive-publishers biber 
+  ```
+  - multimedia packages
+  ```bash
+  sudo yay -S spotify spicetify-cli shotwell vlc
+  ```
+  Upon installing `Spotify` you'll need to go through the T&Cs. To accept immediately press `Shift + q`. 
+
+6. Create the `/mnt/tmp/` directory for mounting/unmounting USB external devices
 ```bash
 sudo mkdir /mnt/tmp
 ```
 
-6. Install the bluetooth utilities
+7. Install the bluetooth utilities
 ```bash
 sudo yay -Sy bluez bluez-utils bluez-deprecated-tools
 ```
 Run `lsmod` to check that the relative kernel module is loaded (you should look for `bluetooth` and the module is named `btusb`) and then enable it `systemctl start bluetooth.service`.
 
-7. Set the correct timezone if wrong
+8. Set the correct timezone if wrong
 ```bash
 timedatectl status
 timedatectl list-timezones 
 timedatectl set-timezone your_zone/your_subzone 
 ```
 
-8. Update once more and reboot
+9. Update once more and reboot
 ```bash
 sudo yay -Syu
 reboot
