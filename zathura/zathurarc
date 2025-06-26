@@ -1,5 +1,4 @@
-# Remapping inverse search (PDF -> TEX) shortcut
-# map [normal] <> 
-
 # Set colorscheme
-# include nord 
+set recolor true
+set recolor-keephue
+include catppuccin-macchiato

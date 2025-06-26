@@ -20,6 +20,24 @@
 #### Rofi
 - `Alt + Space` = launch
 
+### [Zathura](./instructions/Zathura.md) keybindings
+- `j` = scroll down
+- `k` = scroll up 
+- `J` = previous page 
+- `K` = following page 
+- `nG` = n-th page 
+- `P` = snaps current page 
+- `s` = fit width 
+- `a` = fit page 
+- `?` = search prompt 
+- `n` = previous match in the search results
+- `N` = next match in the search results
+- `+,-` = zoom in, out 
+- `Esc` = abort 
+- `q` = quit 
+- `F11` = toggle fullscreen/normal mode 
+- `ctrl+n` = toggle statusbar 
+
 ### [Neovim](./instructions/Neovim.md) keybindings, snippets and shortcuts
 
 #### Normal mode
