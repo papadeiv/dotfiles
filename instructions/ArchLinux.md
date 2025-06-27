@@ -91,9 +91,8 @@ sudo yay -S base-devel juliaup cmake extra-cmake-modules openssh man qt6-tools g
   ```
   - multimedia packages
   ```bash
-  sudo yay -S spotify spicetify-cli shotwell vlc
+  sudo yay -S shotwell vlc
   ```
-  Upon installing `Spotify` you'll need to go through the T&Cs. To accept immediately press `Shift + q`. 
 
 6. Create the `/mnt/tmp/` directory for mounting/unmounting USB external devices
 ```bash
@@ -137,4 +136,3 @@ Follow the steps below in order: each step has multiple choices depending on you
   - dmenu
 - Install and configure [Julia](Julia.md)
 - Configure the [SSH](SSH.md) connection
-- Configure [Spicetify](Spicetify.md)

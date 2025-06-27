@@ -9,7 +9,7 @@ set completion-group-bg		    "#313244"
 set completion-group-fg		    "#89B4FA"
 
 set statusbar-fg		          "#CDD6F4"
-set statusbar-bg		          "#313244"
+set statusbar-bg		          "#1E1E2E"
 
 set notification-bg		        "#313244"
 set notification-fg		        "#CDD6F4"
@@ -19,7 +19,7 @@ set notification-warning-bg	  "#313244"
 set notification-warning-fg	  "#FAE3B0"
 
 set inputbar-fg			          "#CDD6F4"
-set inputbar-bg 		          "#313244"
+set inputbar-bg 		          "#1E1E2E"
 
 set recolor-lightcolor		    "#1E1E2E"
 set recolor-darkcolor		      "#CDD6F4"

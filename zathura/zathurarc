@@ -1,4 +1,4 @@
 # Set colorscheme
 set recolor true
 set recolor-keephue
-include catppuccin-macchiato
+include catppuccin-mocha-mod
