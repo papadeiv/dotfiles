@@ -35,6 +35,9 @@ alias inittex='cp ~/.config/latex/{style.sty,main.tex} . && cp -r ~/.config/late
 # Kitty image renderer
 alias showme='kitty +kitten icat'
 
+# Launch music deamon and its client
+alias music='mpd && rmpc'
+
 # Frequently visited directories
 alias home='cd ~'
 alias ds='cd ~/Libraries/STEWS'

@@ -91,6 +91,7 @@ sudo yay -S base-devel juliaup cmake extra-cmake-modules openssh man qt6-tools g
   ```
   - multimedia packages
   ```bash
+  sudo pacman -S mpd rmpc
   sudo yay -S shotwell vlc
   ```
 
