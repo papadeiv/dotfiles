@@ -8,6 +8,7 @@
 ## Workflow
 
 ### System shortcuts
+- `Meta + left click` = drag and move window
 
 #### File explorer
 - `Meta + e` = launch

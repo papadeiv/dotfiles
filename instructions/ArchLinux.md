@@ -79,7 +79,7 @@ sudo yay -Syu
   ```
   - code development tools
 ```bash
-sudo yay -S base-devel juliaup cmake extra-cmake-modules openssh man qt6-tools gparted ntfs-3g kio-extras
+sudo yay -S base-devel juliaup cmake extra-cmake-modules openssh man qt6-tools gparted ntfs-3g kio-extras kwin-effects-forceblur
 ```
   - research tools
   ```bash

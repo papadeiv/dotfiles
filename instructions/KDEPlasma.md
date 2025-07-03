@@ -85,7 +85,8 @@ System Settings > Default Applications > Terminal emulator: kitty
 System Settings > Window Management > Task Switcher > Visualization > Large icons
 System Settings > Window Management > Desktop Effects > Hide Cursor > Tick 
 System Settings > Window Management > Desktop Effects > Background Contrast > Tick 
-System Settings > Window Management > Desktop Effects > Blur > Tick > Click on gear icon to change noise and blur strength (both of them on 5th to last tick) 
+System Settings > Window Management > Desktop Effects > Blur > Untick
+System Settings > Window Management > Desktop Effects > Better Blur > Tick
 System Settings > Window Management > Desktop Effects > Translucency > Tick 
 System Settings > Window Management > Desktop Effects > Magic Lamp > Tick > Configure > 350 milliseconds 
 System Settings > Window Management > Window Rules > Application settings for systemsettins > Edit (pencil icon) > Match whole window class: Yes, Window types: All selected  
