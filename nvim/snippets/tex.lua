@@ -41,9 +41,45 @@ return {
       {}
     ) 
   ),
+  s({trig = "g", dscr = "gamma"},
+    fmta(
+      "\\gamma",
+      {}
+    ) 
+  ),
+  s({trig = "G", dscr = "Capital gamma"},
+    fmta(
+      "\\Gamma",
+      {}
+    ) 
+  ),
+  s({trig = "d", dscr = "delta"},
+    fmta(
+      "\\delta",
+      {}
+    ) 
+  ),
+  s({trig = "D", dscr = "Capital delta"},
+    fmta(
+      "\\Delta",
+      {}
+    ) 
+  ),
   s({trig = "l", dscr = "lambda"},
     fmta(
       "\\lambda",
+      {}
+    ) 
+  ),
+  s({trig = "L", dscr = "Capital lambda"},
+    fmta(
+      "\\Lambda",
+      {}
+    ) 
+  ),
+  s({trig = "e", dscr = "epsilon"},
+    fmta(
+      "\\varepsilon",
       {}
     ) 
   ),
@@ -59,9 +95,15 @@ return {
       {}
     ) 
   ),
-  s({trig = "w", dscr = "omega"},
+  s({trig = "o", dscr = "omega"},
     fmta(
       "\\omega",
+      {}
+    ) 
+  ),
+  s({trig = "O", dscr = "Capital omega"},
+    fmta(
+      "\\Omega",
       {}
     ) 
   ),
@@ -85,7 +127,7 @@ return {
       {i(1), i(2)}
     )
   ),
-  s({trig = "s", dscr = "Sequence (or simply curly brackets)"},
+  s({trig = "seq", dscr = "Sequence (or simply curly brackets)"},
     fmta(
       "\\{<>\\}_{<>}<>",
       {i(1), i(2), i(3)}
@@ -127,6 +169,12 @@ return {
   s({trig = "pprime", dscr = "Double-prime"},
     fmta(
       "\\pprime{<>}<>",
+      {i(1), i(2)}
+    ) 
+  ),
+  s({trig = "dot", dscr = "Dot"},
+    fmta(
+      "\\dot{<>}<>",
       {i(1), i(2)}
     ) 
   ),
@@ -205,24 +253,6 @@ return {
   ),
 
   -- Text mode
-  s({trig = "sec", dscr = "Section"},
-    fmta(
-      "\\section{<>}\\label{sec<>}",
-      {i(1), i(2)}
-    )   
-  ),
-  s({trig = "sub", dscr = "Sub-Section"},
-    fmta(
-      "\\subsection{<>}\\label{subsec<>}",
-      {i(1), i(2)}
-    )   
-  ),
-  s({trig = "subsub", dscr = "Sub-Sub-Section"},
-    fmta(
-      "\\subsubsection{<>}\\label{subsubsec<>}",
-      {i(1), i(2)}
-    )   
-  ),
   s({trig = "it", dscr = "Italianised text"},
     fmta(
       "\\textit{<>}",
@@ -249,7 +279,7 @@ return {
   ),
   s({trig = "cit", dscr = "Citation"},
     fmta(
-      "\\cite{<>}$<>",
+      "\\cite{<>}<>",
       {i(1), i(2)}
     )
   ),
@@ -301,7 +331,21 @@ return {
         \begin{itemize}
              \item <>;
              \item <>;
+             \item <>;
         \end{itemize}
+        <>
+      ]],
+      {i(1), i(2), i(3)}
+    )
+  ),
+  s({trig="enum", dscr = "Numerated lists"},
+    fmta(
+      [[
+        \begin{enumerate}
+             \item <>;
+             \item <>;
+             \item <>;
+        \end{enumerate}
         <>
       ]],
       {i(1), i(2), i(3)}
@@ -321,6 +365,49 @@ return {
       {i(1), i(2), i(3), i(4)}
     )
   ),
+  s({trig="subfig", dscr = "Sub figure environment"},
+    fmta(
+      [[
+        \begin{figure}[H]
+            \centering 
+            \begin{subfigure}[b]{0.495\textwidth}
+                \centering 
+                \includegraphics[keepaspectratio, width = \linewidth]{../figures/fig:<>.png}
+                \caption{}
+                \label{fig:<>}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.495\textwidth}
+                \centering 
+                \includegraphics[keepaspectratio, width = \linewidth]{../figures/fig:<>.png}
+                \caption{}
+                \label{fig:<>}
+            \end{subfigure}
+
+
+            \begin{subfigure}[b]{0.495\textwidth}
+                \centering 
+                \includegraphics[keepaspectratio, width = \linewidth]{../figures/fig:<>.png}
+                \caption{}
+                \label{fig:<>}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.495\textwidth}
+                \centering 
+                \includegraphics[keepaspectratio, width = \linewidth]{../figures/fig:<>.png}
+                \caption{}
+                \label{fig:<>}
+            \end{subfigure}
+
+
+            \caption{<>}
+            \label{fig:<>}
+        \end{figure}
+        <>
+      ]],
+      {i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8), i(9), i(10), i(11)}
+    )
+  ),
   s({trig="snip", dscr = "Snippets environment"},
     fmta(
     "\\lstinputlisting[language=<>]{snippets/<>}<>",
@@ -330,7 +417,7 @@ return {
   s({trig = "eq", dscr = "Numbered equation"},
     fmta(
       [[
-        \begin{equation}\label{eq<>}
+        \begin{equation}\label{eq:<>}
              <>
         \end{equation}
         <>
@@ -338,12 +425,24 @@ return {
       {i(1), i(2), i(3)}
     )
   ), 
+  s({trig = "eq*", dscr = "Unnumbered equation"},
+    fmta(
+      [[
+        \begin{equation*}
+             <>
+        \end{equation*}
+        <>
+      ]],
+      {i(1), i(2)}
+    )
+  ), 
+ 
   s({trig = "multieq", dscr = "Multiline equation"},
     fmta(
       [[
         \begin{align}
              <> =& <> = \nonumber \\
-                =& <> \,, \label{eq<>} 
+                =& <> \,, \label{eq:<>} 
         \end{align}
         <>
       ]],
@@ -353,7 +452,7 @@ return {
   s({trig = "sys", dscr = "System of equations"},
     fmta(
       [[
-        \begin{equation}\label{eq<>}
+        \begin{equation}\label{eq:<>}
            \begin{cases}
               <> \,, \\
               <> \,, 
@@ -367,7 +466,7 @@ return {
   s({trig = "thm", dscr = "Theorem custom env"},
     fmta(
       [[
-        \begin{theorem}[label=thm<>]{<>}{}
+        \begin{theorem}[label=thm:<>]{<>}{}
              <>
         \end{theorem}
         <>
@@ -378,7 +477,7 @@ return {
   s({trig = "def", dscr = "Definition custom env"},
     fmta(
       [[
-        \begin{definition}[<>]\label{def<>}
+        \begin{definition}[<>]\label{def:<>}
              <>
         \end{definition}
         <>
@@ -389,7 +488,7 @@ return {
   s({trig = "obs", dscr = "Obervation custom env"},
     fmta(
       [[
-        \begin{observation}\label{obs<>}
+        \begin{observation}\label{obs:<>}
              <>
         \end{observation}
         <>
