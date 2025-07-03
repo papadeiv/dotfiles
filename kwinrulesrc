@@ -1,0 +1,76 @@
+[2b56563f-67a9-4a7e-9988-5a82245346e4]
+opacityactive=92
+opacityactiverule=2
+opacityinactive=92
+opacityinactiverule=2
+wmclasscomplete=true
+
+[9b884020-7bcc-4d0d-9107-60f79a438200]
+Description=Window settings for systemsettings
+opacityactive=92
+opacityactiverule=2
+opacityinactive=92
+opacityinactiverule=2
+title=Shortcuts — System Settings
+titlematch=1
+types=1
+wmclass=systemsettings
+wmclassmatch=1
+
+[General]
+count=5
+rules=9b884020-7bcc-4d0d-9107-60f79a438200,bad85d8f-7d72-424d-bc10-faebd2dae960,a0628e33-5682-43d4-8bc7-0b425e19d87e,ae5227b8-429f-4ab2-ab2a-6566c95391c1,c6671536-6dfc-47cc-9b3a-98b2b24ed779
+
+[Kitty]
+blur=true
+wmclass=kitty
+
+[a0628e33-5682-43d4-8bc7-0b425e19d87e]
+Description=Application settings for org.kde.dolphin
+decocolor=UtterlyNord
+decocolorrule=2
+wmclass=dolphin org.kde.dolphin
+wmclasscomplete=true
+wmclassmatch=1
+
+[ae5227b8-429f-4ab2-ab2a-6566c95391c1]
+Description=Application settings for systemsettings
+decocolor=UtterlyNord
+decocolorrule=2
+opacityactive=92
+opacityactiverule=2
+opacityinactive=92
+opacityinactiverule=2
+wmclass=systemsettings
+wmclasscomplete=true
+wmclassmatch=1
+
+[bad85d8f-7d72-424d-bc10-faebd2dae960]
+Description=Window settings for Google-chrome
+clientmachine=localhost
+decocolor=UtterlyNord
+decocolorrule=2
+opacityactive=92
+opacityactiverule=2
+opacityinactive=92
+opacityinactiverule=2
+title=Transparent windows : r/kde - Google Chrome
+windowrole=browser
+windowrolematch=1
+wmclass=google-chrome
+wmclasscomplete=true
+wmclassmatch=1
+
+[c6671536-6dfc-47cc-9b3a-98b2b24ed779]
+Description=Window settings for systemsettings
+decocolor=UtterlyNord
+decocolorrule=2
+opacityactive=92
+opacityactiverule=2
+opacityinactive=92
+opacityinactiverule=2
+title=Application Style — System Settings
+titlematch=1
+wmclass=systemsettings
+wmclasscomplete=true
+wmclassmatch=1

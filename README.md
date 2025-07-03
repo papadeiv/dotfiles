@@ -106,6 +106,16 @@ balooctl6 disable
 balooctl6 purge 
 ```
 
+### Nvidia firware update 
+1. To progress the system updgrade remove the firmware 
+```bash
+sudo pacman -Rdd linux-firmware
+```
+and then proceed to reinstall it as part of the upgrade
+```bash
+sudo pacman -Syu linux-firmware
+```
+
 ### Black screen after reboot (Arch)
 You need to revert some of the changes prior to the reboot (presumably a theme of the display manager in KDE Plasma 6)
 1. Login to a `tty` by pressing `Ctrl + Alt + F2` or `Ctrl + Alt + F6`
