@@ -91,6 +91,9 @@ System Settings > Window Management > Desktop Effects > Translucency > Tick
 System Settings > Window Management > Desktop Effects > Magic Lamp > Tick > Configure > 350 milliseconds 
 System Settings > Window Management > Window Rules > Application settings for systemsettins > Edit (pencil icon) > Match whole window class: Yes, Window types: All selected  
 System Settings > Window Management > Window Rules > Window settings for systemsettins > Edit (pencil icon) > Match whole window class: Yes, Window types: All selected  
+System Settings > Window Management > Window Rules > Window settings for kitty > Edit (pencil icon) > Match whole window class: Yes, Window types: All selected > Click on '+ Add Property...' > No titlebar and frame > Force > Yes 
+System Settings > Window Management > Window Rules > Window settings for Google-chrome > Edit (pencil icon) > Match whole window class: Yes, Window types: All selected > Click on '+ Add Property...' > No titlebar and frame > Force > Yes 
+System Settings > Window Management > Window Rules > Window settings for org.kde.dolphin > Edit (pencil icon) > Match whole window class: Yes, Window types: All selected > Click on '+ Add Property...' > No titlebar and frame > Force > Yes 
 ```
 
 6. Task manager (bottom bar)
