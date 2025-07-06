@@ -9,6 +9,7 @@
 
 ### System shortcuts
 - `Meta + left click` = drag and move window
+- `Meta + shift + down` = resize window
 
 #### File explorer
 - `Meta + e` = launch
@@ -38,6 +39,7 @@
 - `q` = quit 
 - `F11` = toggle fullscreen/normal mode 
 - `ctrl+n` = toggle statusbar 
+- `ctrl+r` = toggle inverted colors mode 
 
 ### [Neovim](./instructions/Neovim.md) keybindings, snippets and shortcuts
 
