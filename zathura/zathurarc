@@ -1,4 +1,5 @@
 # Set colorscheme
 set recolor true
 set recolor-keephue
+set selection-clipboard clipboard 
 include catppuccin-mocha-mod

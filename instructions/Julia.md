@@ -46,3 +46,51 @@ add ModelingToolkit DifferentialEquations DomainSets MethodOfLines LinearAlgebra
 4. Type `backspace` to go back in Prompt mode and execute `include("filename.jl")`
 
 5. Type `ctrl + d` to exit the REPL
+
+## Package development
+
+1. Use `PkgTemplates` to create a scaffold `Julia` package.
+
+```julia
+using PkgTemplates
+
+t = Template(;
+             user="papadeiv",
+             dir="~/Libraries",
+             authors="Davide Papapicco",
+             julia=v"1.11",
+             plugins=[
+                      Tests(),
+                      Readme(; inline_badges=true),
+                      License(; name="MIT"),
+                      Git(; manifest=true, ssh=true),
+                      GitHubActions(; osx=true, windows=true, x86=true, extra_versions=["1.10"]),
+                      !CompatHelper,
+                      !TagBot,
+                      !Dependabot
+                     ],
+            )
+```
+
+2. Create the package
+
+```julia
+t("MyPackage")
+```
+
+then access it 
+
+```bash
+cd ~/Libraries/MyPackage
+```
+
+and finally activate it and add runtime dependencies to it
+
+```julia
+using Pkg
+
+Pkg.activate(".")
+Pkg.add(["Makie", "CairoMakie"])
+```
+
+3. Write a minimal helper function in `MyPackage.jl` and add a test for it in `runtests.jl`
