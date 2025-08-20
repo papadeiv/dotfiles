@@ -65,7 +65,6 @@ t = Template(;
                       License(; name="MIT"),
                       Git(; manifest=true, ssh=true),
                       GitHubActions(; osx=true, windows=true, x86=true, extra_versions=["1.10"]),
-                      !CompatHelper,
                       !TagBot,
                       !Dependabot
                      ],
