@@ -52,9 +52,9 @@ add ModelingToolkit DifferentialEquations DomainSets MethodOfLines LinearAlgebra
 1. Use `PkgTemplates` to create a scaffold `Julia` package.
 
 ```julia
-using PkgTemplates
+julia> using PkgTemplates
 
-t = Template(;
+julia> t = Template(;
              user="papadeiv",
              dir="~/Libraries",
              authors="Davide Papapicco",
@@ -64,7 +64,7 @@ t = Template(;
                       Readme(; inline_badges=true),
                       License(; name="MIT"),
                       Git(; manifest=true, ssh=true),
-                      GitHubActions(; osx=true, windows=true, x86=true, extra_versions=["1.10"]),
+                      GitHubActions(; osx=true,windows=true,extra_versions=["1.10"]),
                       !TagBot,
                       !Dependabot
                      ],
@@ -74,7 +74,7 @@ t = Template(;
 2. Create the package
 
 ```julia
-t("MyPackage")
+julia> t("MyPackage")
 ```
 
 then access it 
@@ -86,10 +86,83 @@ cd ~/Libraries/MyPackage
 and finally activate it and add runtime dependencies to it
 
 ```julia
-using Pkg
-
-Pkg.activate(".")
-Pkg.add(["Makie", "CairoMakie"])
+julia> using Pkg
+julia> Pkg.activate(".")
+julia> Pkg.add(["LinearAlgebra", "Statistics"])
 ```
 
 3. Write a minimal helper function in `MyPackage.jl` and add a test for it in `runtests.jl`
+
+```julia
+(MyPackage/src/MyPackage.jl)
+
+module MyPackage
+
+using LinearAlgebra, Statistics
+
+export rand_trace
+
+"""
+        rand_trace(dim; kwargs)
+Generate a square dim-by-dim matrix with its trace being a random variable.
+"""
+function rand_trace(dim; kwargs...)
+    return A
+end
+
+end # module
+
+(MyPackage/test/runtests.jl)
+
+using MyPackage, Test
+using LinearAlgebra, Statistics
+
+@testset "name of the test" begin
+    A = rand_trace(4)
+    @test isa(A, ) 
+end
+```
+
+4. Run tests (you have to be inside `MyProject` root directory)
+
+```julia
+pkg> activate .
+(MyPackage) pkg> test
+
+```
+
+5. Inlcude the package in newly developed code. 
+First create a new script in the directory different from the root of `MyPackage`
+
+```bash
+MyPackage > cd ..
+Libraries > touch test.jl 
+Libraries > ls
+MyPackage    test.jl
+```
+
+then include the package in such script
+
+```julia
+(Libraries/test.jl)
+
+using MyPackage
+
+rand_mat = rand_trace(10)
+```
+
+and so you can open the `Julia` REPL and type
+
+```julia
+pkg> dev ./MyProject/ 
+julia> include("test.jl")
+```
+
+6. Now that everything works you can go back to the package root and push the code to remote (first create a GitHub repo with the name __MyPackage.jl__, including the `.jl` extension in the name)
+
+```bash
+cd ./MyPackage
+git add .
+git commit -m "First commit"
+git push origin main
+```
