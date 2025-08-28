@@ -22,3 +22,10 @@ cp ./dotfiles/rmpc ./.config/
 - `Ctrl + r` = rename 
 - `a` = add to queue 
 - `d` = remove from queue
+
+## Update
+When you add new music to your folders you have to update `rmpc` first with
+```bash
+rmpc update
+```
+and then launch the app.

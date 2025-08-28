@@ -335,7 +335,7 @@ return {
         \end{itemize}
         <>
       ]],
-      {i(1), i(2), i(3)}
+      {i(1), i(2), i(3), i(4)}
     )
   ),
   s({trig="enum", dscr = "Numerated lists"},
@@ -348,7 +348,7 @@ return {
         \end{enumerate}
         <>
       ]],
-      {i(1), i(2), i(3)}
+      {i(1), i(2), i(3), i(4)}
     )
   ),
   s({trig="fig", dscr = "Figure environment"},
