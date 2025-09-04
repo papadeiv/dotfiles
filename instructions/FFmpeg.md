@@ -14,6 +14,18 @@ where:
 
 For a more broad type of numbering patters for the source images see [this guide](https://en.wikibooks.org/wiki/FFMPEG_An_Intermediate_Guide/image_sequence).
 
+## non-consecutive naming scheme
+If your image files are named something like `10.png`, `20.png` etc then you should first rename them in a increasing sequence of consecutive integers. 
+
+Place the bash script `rename.sh` into the directory with the images, then run
+
+```bash
+chmod +x rename.sh
+./rename.sh
+```
+
+This should give you a naming scheme that is easily digestable by `ffmpeg` using the command above.
+
 ## Using a list file
 
 ### Images
