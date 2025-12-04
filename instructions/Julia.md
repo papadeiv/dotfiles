@@ -47,6 +47,15 @@ add ModelingToolkit DifferentialEquations DomainSets MethodOfLines LinearAlgebra
 
 5. Type `ctrl + d` to exit the REPL
 
+## Project development
+
+From the root folder of the project run
+
+```julia
+pkg> activate .
+pkg> instantiate
+```
+
 ## Package development
 
 1. Use `PkgTemplates` to create a scaffold `Julia` package.
