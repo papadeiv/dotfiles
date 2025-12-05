@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
   use 'rafamadriz/friendly-snippets'
   -- cmp-nvim-lsp (nvim-cmp source, required by nvim-cmp)
   use 'hrsh7th/cmp-nvim-lsp'
+  -- cmp-latex-symbols (latex completion source)
+  use 'kdheepak/cmp-latex-symbols'
   -- Autoclose
   use 'm4xshen/autoclose.nvim'
   -- ToogleTerm
