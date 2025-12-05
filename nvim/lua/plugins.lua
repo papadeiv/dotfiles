@@ -16,40 +16,31 @@ return require('packer').startup(function(use)
   -- Packer
   use 'wbthomason/packer.nvim'
   -- VimTex
-  use 'lervag/vimtex'  
-    --NvimTree
+  use ({'lervag/vimtex', tag = "v2.15"})  
+  -- NvimTree
   use 'nvim-tree/nvim-tree.lua'
-  -- NvimTree dependency
+  -- webdev icons (required by dependency)
   use 'nvim-tree/nvim-web-devicons'
-    -- Whichkey
+  -- Whichkey
   use 'folke/which-key.nvim'
   -- Catppuccin color theme
   use { "catppuccin/nvim", as = "catppuccin" }
-  -- Nord color theme
-  use 'shaunsingh/nord.nvim'
-  -- Onedark color theme
-  use 'navarasu/onedark.nvim'
-  -- Kanagawa color theme
-  use 'rebelot/kanagawa.nvim'
   -- LuaLine
   use 'nvim-lualine/lualine.nvim'
-  -- LuaSnip
-  use({"L3MON4D3/LuaSnip",
-	      -- follow latest release.
-	      tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-	      -- install jsregexp (optional!:).
-	      run = "make install_jsregexp"
-  })
+  -- Nvim-Cmp (completion engine) 
+  use 'hrsh7th/nvim-cmp'
+  -- LuaSnip (snippet engine, required by nvim-cmp)
+  use({"L3MON4D3/LuaSnip", tag = "v2.*", run = "make install_jsregexp"})
+  -- Cmp-luasnip (completion source, required by nvim-cmp)
+  use 'saadparwaiz1/cmp_luasnip'
+  -- Friendly snippets (snippets sources, required by nvim-cmp)
+  use 'rafamadriz/friendly-snippets'
+  -- cmp-nvim-lsp (nvim-cmp source, required by nvim-cmp)
+  use 'hrsh7th/cmp-nvim-lsp'
   -- Autoclose
   use 'm4xshen/autoclose.nvim'
   -- ToogleTerm
   use 'akinsho/toggleterm.nvim'
-  -- Nvim-Cmp
-  use 'hrsh7th/nvim-cmp'
-  -- Zotcite
-  use 'jalvesaq/zotcite'
-  -- Cmp-Zotcite
-  use 'jalvesaq/cmp-zotcite'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

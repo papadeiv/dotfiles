@@ -31,7 +31,12 @@ require("catppuccin").setup({
         -- miscs = {}, -- Uncomment to turn off hard-coded styles
     },
     color_overrides = {},
-    custom_highlights = {},
+    custom_highlights = function(colors)
+            return {
+                LineNr = {fg = colors.overlay2},
+                CursorLineNr = {fg = colors.green},
+            }
+    end,
     default_integrations = true,
     integrations = {
         cmp = true,
