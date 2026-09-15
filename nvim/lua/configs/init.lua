@@ -1,8 +1,0 @@
-require("configs.nvim-tree")
-require("configs.whichkey")
-require("configs.catppuccin")
-require("configs.lualine")
-require("configs.luasnip")
-require("configs.autoclose")
-require("configs.toggleterm")
-require("configs.nvim-cmp")

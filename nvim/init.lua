@@ -1,8 +1,18 @@
-require('options')
-require('plugins')
-require('configs')
-require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
+-- ============================================================================
+-- init.lua: entry point
+-- ============================================================================
+-- This file only loads the modules below, in order. Each module has one job:
+--
+--   core/options.lua   editor settings (line numbers, tabs, clipboard, ...)
+--   core/keymaps.lua   global keybindings that don't belong to a plugin
+--   core/autocmds.lua  small automatic behaviours (yank highlight, ...)
+--   core/lazy.lua      installs lazy.nvim and loads every file in lua/plugins/
+--
+-- To add a plugin, create a new file in lua/plugins/. To remove one, delete
+-- its file. Nothing else needs to change.
+-- ============================================================================
 
--- Disable cursor line
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "none", underline = false, bold = false })
-vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none", bold = true})
+require("core.options") -- must come first: it sets the leader key
+require("core.keymaps")
+require("core.autocmds")
+require("core.lazy")
