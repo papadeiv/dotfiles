@@ -26,7 +26,7 @@ return {
       indent = { char = "│" },
       scope = { enabled = true }, -- highlight the block the cursor is in
       exclude = {
-        filetypes = { "help", "neo-tree", "toggleterm", "lazy", "mason", "neominimap" },
+        filetypes = { "help", "neo-tree", "toggleterm", "lazy", "mason", "neominimap", "alpha" },
       },
     },
   },

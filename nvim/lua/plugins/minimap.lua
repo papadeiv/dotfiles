@@ -44,7 +44,7 @@ return {
       -- the shape of the code, plus errors/warnings and search matches.
       treesitter = { enabled = false },
 
-      exclude_filetypes = { "help", "neo-tree", "toggleterm", "lazy", "mason" },
+      exclude_filetypes = { "help", "neo-tree", "toggleterm", "lazy", "mason", "alpha" },
     }
   end,
 }

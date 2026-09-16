@@ -17,6 +17,7 @@
 local parsers = {
   "julia", "python", "cpp", "c", "matlab", "bash",
   "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "bibtex",
+  "html", "yaml", -- used by render-markdown (HTML comments, front matter)
 }
 
 -- Filetypes that get treesitter highlighting and text objects

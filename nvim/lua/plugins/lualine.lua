@@ -29,7 +29,7 @@ return {
     local function built_theme()
       local text = color("Normal", "fg") or "#ffffff"
       local dark = color("Pmenu", "bg") or color("NormalFloat", "bg") or "#1e1e2e" -- text on the coloured ends
-      local surface = color("Visual", "bg") or "#3b4252" -- second, darker pill
+      local surface = color("ColorColumn", "bg") or color("Visual", "bg") or "#3b4252" -- second, darker pill
       local accents = { -- colour of the mode pill in each mode
         normal = color("Function", "fg"),
         insert = color("String", "fg"),
@@ -80,6 +80,23 @@ return {
       return theme
     end
 
+    -- Status line while the cursor is in the file tree:  NORMAL  Filesystem
+    local neo_tree_extension = {
+      filetypes = { "neo-tree" },
+      sections = {
+        lualine_a = { { "mode", separator = { right = "" } } },
+        lualine_b = { { function() return "Filesystem" end, separator = { right = "" } } },
+      },
+    }
+
+    -- Status line while the cursor is in a terminal:  TERMINAL
+    local terminal_extension = {
+      filetypes = { "toggleterm" },
+      sections = {
+        lualine_a = { { "mode", separator = { right = "" } } },
+      },
+    }
+
     local function setup()
     require('lualine').setup{
             options = {
@@ -127,7 +144,8 @@ return {
                                 {'datetime',
                                   style = "%H:%M:%S  %d/%m/%y"
                                 }},
-            }
+            },
+            extensions = { neo_tree_extension, terminal_extension },
     }
     end
 

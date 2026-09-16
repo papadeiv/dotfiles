@@ -8,7 +8,7 @@
 --   a  create a file (end the name with / to create a folder)
 --   r  rename
 --   d  delete (asks for confirmation)
---   x  cut      c  copy      v  paste (into the folder under the cursor)
+--   x  cut      c  copy      p  paste (into the folder under the cursor)
 --   H  show / hide hidden files
 -- To add more, see the list of commands in `:help neo-tree-mappings`.
 
@@ -55,7 +55,7 @@ return {
         ["d"] = "delete",
         ["x"] = "cut_to_clipboard",
         ["c"] = "copy_to_clipboard",
-        ["v"] = "paste_from_clipboard",
+        ["p"] = "paste_from_clipboard",
         ["H"] = "toggle_hidden", -- show / hide dotfiles and gitignored files
       },
     },

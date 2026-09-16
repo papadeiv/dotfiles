@@ -1,7 +1,7 @@
 # Neovim
 
 ## Installation (Ubuntu and Debian only, skip this if on Arch)
-1. Go to [Neovim Github's page](https://github.com/neovim/neovim/releases/tag/v0.9.5) and download the tarbal of the latest stable release (version > 0.5 otherwise init.lua won't load properly')
+1. Go to [Neovim Github's page](https://github.com/neovim/neovim/releases/tag/v0.9.5) and download the tarbal of the latest stable release (version > 0.12.5 otherwise init.lua won't load properly')
 2. Move the tarbal in the appropriate folder and extract it
 ```bash
 mv nvim-linux64.tar.gz ~/.local/bin/ && cd ~/.local/bin/

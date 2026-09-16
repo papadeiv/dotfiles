@@ -14,9 +14,6 @@ map("n", "q", "o", { desc = "Open a new line below" })
 map("n", "1", "0", { desc = "Go to start of line" })
 map("n", "2", "$", { desc = "Go to end of line" })
 
--- `q` is taken above, so macro recording moves here.
--- Usage: <leader>ma ...edits... <leader>m  records into register a; replay with @a
-map("n", "<leader>m", "q", { desc = "Record macro" })
 
 -- Windows ----------------------------------------------------------------------
 -- Move to the previous window: with the tree and one file open, this switches
