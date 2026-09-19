@@ -1,79 +1,15 @@
 -- ============================================================================
 -- plugins/colorscheme.lua: colour themes
 -- ============================================================================
--- To switch theme, change `active` below and restart Neovim.
--- You can also try one without restarting:  :colorscheme nord
+-- The theme data (which themes exist, their accent colours) lives in
+-- lua/theme.lua, the single source of truth. This file only turns that data
+-- into lazy.nvim plugin specs and applies the small tweaks that use it
+-- (tree lines, window separators, the minimap border, selected text).
 --
--- To add a theme, add an entry to `themes` with its GitHub repo and its
--- setup options, then set `active` to its name.
---
--- A theme entry can also have `highlights`: a function returning colour
--- overrides that only apply while that theme is active.
+-- To switch theme, change `active` in lua/theme.lua and restart Neovim.
+-- You can also try one without restarting:  :colorscheme cyberpunk-2077
 
-local active = "cyberdream" -- "catppuccin", "nord" or "cyberdream"
-
--- Mix two "#rrggbb" colours: amount = 1 gives `color`, 0 gives `base`
-local function mix(color, base, amount)
-  local function channel(hex, i)
-    return tonumber(hex:sub(i, i + 1), 16)
-  end
-  local out = "#"
-  for _, i in ipairs({ 2, 4, 6 }) do
-    local value = channel(color, i) * amount + channel(base, i) * (1 - amount)
-    out = out .. string.format("%02x", math.floor(value + 0.5))
-  end
-  return out
-end
-
-local themes = {
-  catppuccin = {
-    repo = "catppuccin/nvim",
-    setup = function()
-      require("catppuccin").setup({
-        flavour = "macchiato", -- latte, frappe, macchiato, mocha
-        transparent_background = true,
-        styles = {
-          comments = { "italic" },
-          conditionals = { "italic" },
-        },
-        auto_integrations = true, -- colour neo-tree, blink.cmp, flash, ... to match
-        custom_highlights = function(colors)
-          return { LineNr = { fg = colors.overlay2 } } -- the relative numbers
-        end,
-      })
-    end,
-  },
-
-  cyberdream = {
-    repo = "scottmckendry/cyberdream.nvim",
-    setup = function()
-      require("cyberdream").setup({ transparent = true })
-    end,
-    highlights = function()
-      local c = require("cyberdream.colors").default -- the cyberdream palette
-      return {
-        -- Neon purple lines: tree guides, window separators, minimap border
-        NeoTreeIndentMarker = { fg = c.purple },
-        NeoTreeWinSeparator = { fg = c.purple },
-        WinSeparator = { fg = c.purple },
-        NeominimapBorder = { fg = c.purple },
-        -- Selected text: neon blue mixed with the background so text stays
-        -- readable. Raise 0.40 for a stronger blue, lower it for a subtler one.
-        Visual = { bg = mix(c.blue, c.bg, 0.40) },
-      }
-    end,
-  },
-
-  nord = {
-    repo = "gbprod/nord.nvim",
-    setup = function()
-      require("nord").setup({
-        transparent = true,
-        styles = { comments = { italic = true } },
-      })
-    end,
-  },
-}
+local theme = require("theme")
 
 -- Tweaks applied on top of whichever theme is active ----------------------------
 local function apply_tweaks()
@@ -81,13 +17,30 @@ local function apply_tweaks()
   vim.api.nvim_set_hl(0, "CursorLine", {})                                -- no highlight bar on the cursor line
   vim.api.nvim_set_hl(0, "CursorLineNr", { fg = normal.fg, bold = true }) -- current line number: bold
 
-  -- Per-theme overrides. colors_name can be a variant, e.g. "catppuccin-macchiato".
-  for name, theme in pairs(themes) do
-    local current = vim.g.colors_name or ""
-    if theme.highlights and (current == name or current:find("^" .. name .. "%-")) then
-      for group, spec in pairs(theme.highlights()) do
-        vim.api.nvim_set_hl(0, group, spec)
-      end
+  local active = theme.themes[theme.active]
+  local current = vim.g.colors_name or ""
+  if current == active.colorscheme or current:find("^" .. active.colorscheme .. "%-") then
+    local c = active.accents
+    -- Accent lines: tree guides, window separators, minimap border
+    vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = c.purple })
+    vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = c.purple })
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = c.purple })
+    vim.api.nvim_set_hl(0, "NeominimapBorder", { fg = c.purple })
+    -- Selected text: the theme's blue mixed with its background, so text
+    -- underneath stays readable
+    vim.api.nvim_set_hl(0, "Visual", { bg = theme.mix(c.blue, theme.bg(), 0.40) })
+
+    -- Transparency: some themes (cyberpunk-2077 among them) give the file
+    -- tree and floating windows a solid background even in transparent mode.
+    -- Clear them so the terminal shows through, as it does for normal text.
+    for _, group in ipairs({
+      "NormalFloat", "FloatBorder",
+      "NeoTreeNormal", "NeoTreeNormalNC", "NeoTreeEndOfBuffer",
+      "NeoTreeFloatNormal", "NeoTreeFloatBorder", "NeoTreeTitleBar",
+    }) do
+      local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+      hl.bg = nil
+      vim.api.nvim_set_hl(0, group, hl)
     end
   end
 end
@@ -99,16 +52,23 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 -- Build one lazy.nvim spec per theme (no need to edit below this line) -----------
 local specs = {}
-for name, theme in pairs(themes) do
+for name, t in pairs(theme.themes) do
   table.insert(specs, {
-    theme.repo,
-    name = name,
-    lazy = name ~= active, -- only the active theme loads at startup
-    priority = 1000,       -- load before other plugins so they pick up its colours
+    t.repo,
+    -- No custom `name`: lazy.nvim derives the install folder from the repo,
+    -- which is always unique. (Reusing a hand-picked name here once caused a
+    -- theme's plugin folder to be silently left with a DIFFERENT, older
+    -- theme's files in it after a rename.)
+    lazy = name ~= theme.active, -- only the active theme loads at startup
+    priority = 1000,             -- load before other plugins so they pick up its colours
     config = function()
-      theme.setup()
-      if name == active then
-        vim.cmd.colorscheme(name)
+      local ok, err = pcall(t.setup)
+      if not ok then
+        vim.notify("colorscheme " .. name .. ": " .. err, vim.log.levels.WARN)
+        return
+      end
+      if name == theme.active then
+        pcall(vim.cmd.colorscheme, t.colorscheme)
       end
     end,
   })

@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = { { import = "plugins" } },            -- load every file in lua/plugins/
-  install = { colorscheme = { "catppuccin" } }, -- theme shown during the first install
+  install = { colorscheme = { "cyberdream", "habamax" } }, -- theme shown during the first install
   checker = { enabled = false },                -- don't check for updates in the background
   change_detection = { notify = false },        -- reload silently when a config file changes
   rocks = { enabled = false },                  -- no plugin here needs luarocks

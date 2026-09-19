@@ -42,6 +42,8 @@ return {
 
   opts = {
     close_if_last_window = false, -- <leader>q on the last file leaves the tree open
+    -- Never open a file into these windows (the minimap is not a text window)
+    open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy", "neominimap" },
     use_default_mappings = false, -- start from zero keys
     sort_function = sort_by_type,
 

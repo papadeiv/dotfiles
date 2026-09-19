@@ -11,81 +11,76 @@ return {
   lazy = false,
   config = function()
     -- Colours ----------------------------------------------------------------
-    -- The ends of the bar (sections a, b, y, z) are filled with colour and the
-    -- middle (sections c, x) is transparent, whatever the colorscheme.
+    -- Three colours are on the bar at once, taken from the active theme's
+    -- `statusline` triplet in lua/theme.lua:
+    --   1st  the mode pill (section a) and the clock end (section z)
+    --   2nd  the file name (section b) and the location (section y)
+    --   3rd  the progress (section x)
+    -- The middle (sections c and x) stays transparent.
     --
-    -- If the colorscheme ships a lualine theme with filled ends (catppuccin,
-    -- nord, ...), that theme is used. If its theme has no filled ends
-    -- (cyberdream's is text-only), one is built from the colorscheme's own
-    -- colours instead.
+    -- The colours come from lua/theme.lua, NOT from syntax-highlight groups:
+    -- a theme's "String" or "Function" colour does not reliably correspond to
+    -- its yellow or its purple.
 
-    -- Read a colour from a highlight group, as "#rrggbb" (or nil)
-    local function color(group, attr)
-      local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
-      return hl[attr] and string.format("#%06x", hl[attr]) or nil
+    local theme_data = require("theme")
+
+    -- Sections x and y need their colours set on the components themselves,
+    -- because a lualine theme only defines sections a, b and c.
+    --   x (progress) = 3rd colour of the triplet (yellow)
+    --   y (location) = 2nd colour of the triplet (light blue)
+    local function x_color()
+      return { bg = theme_data.statusline()[3], fg = theme_data.bg() }
     end
 
-    -- Build a theme with filled ends from the colorscheme's highlight groups
-    local function built_theme()
-      local text = color("Normal", "fg") or "#ffffff"
-      local dark = color("Pmenu", "bg") or color("NormalFloat", "bg") or "#1e1e2e" -- text on the coloured ends
-      local surface = color("ColorColumn", "bg") or color("Visual", "bg") or "#3b4252" -- second, darker pill
-      local accents = { -- colour of the mode pill in each mode
-        normal = color("Function", "fg"),
-        insert = color("String", "fg"),
-        visual = color("Statement", "fg"),
-        replace = color("DiagnosticError", "fg"),
-        command = color("Constant", "fg"),
-        terminal = color("Type", "fg"),
+    local function y_color()
+      return { bg = theme_data.statusline()[2], fg = theme_data.bg() }
+    end
+
+    -- True only in a real file buffer, so the start screen, the tree, the
+    -- terminal and other scratch buffers leave section c empty.
+    local function is_file()
+      return vim.bo.buftype == "" and vim.api.nvim_buf_get_name(0) ~= ""
+    end
+
+    local function build_theme()
+      local triplet = theme_data.statusline()
+      local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+      local text = normal_hl.fg and string.format("#%06x", normal_hl.fg) or "#ffffff"
+      local dark = theme_data.bg() -- text drawn on top of the coloured pills
+      local base_hl = vim.api.nvim_get_hl(0, { name = "ColorColumn", link = false })
+      local base = base_hl.bg and string.format("#%06x", base_hl.bg) or "#3b4252"
+
+      local filled = {
+        a = { fg = dark, bg = triplet[1], gui = "bold" },
+        b = { fg = dark, bg = triplet[2] },
+        c = { fg = text, bg = "NONE" },
       }
+
       local theme = {}
-      for mode, accent in pairs(accents) do
-        theme[mode] = {
-          a = { fg = dark, bg = accent or text, gui = "bold" },
-          b = { fg = text, bg = surface },
-          c = { fg = text, bg = "NONE" },
-        }
+      for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "terminal" }) do
+        theme[mode] = vim.deepcopy(filled)
       end
-      theme.inactive = { a = { fg = text, bg = surface }, b = { fg = text, bg = surface }, c = { fg = text, bg = "NONE" } }
+      theme.inactive = { a = { fg = text, bg = base }, b = { fg = text, bg = base }, c = { fg = text, bg = "NONE" } }
       return theme
     end
 
     local function transparent_theme()
-      -- Some themes (e.g. nord) give Neovim's own status line a background,
-      -- which shows through the transparent middle. Remove it.
+      -- Some themes give Neovim's own status line a background, which would
+      -- show through the transparent middle. Remove it.
       for _, group in ipairs({ "StatusLine", "StatusLineNC" }) do
         local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
         hl.bg = nil
         vim.api.nvim_set_hl(0, group, hl)
       end
-
-      package.loaded["lualine.themes.auto"] = nil -- re-detect the colorscheme
-      local theme = vim.deepcopy(require("lualine.themes.auto"))
-
-      -- Does the colorscheme's theme fill the ends with colour?
-      local normal = theme.normal or {}
-      local a_bg = normal.a and normal.a.bg
-      local c_bg = normal.c and normal.c.bg
-      local filled = a_bg and a_bg ~= "NONE" and a_bg ~= c_bg
-      if not filled then
-        theme = built_theme()
-      end
-
-      -- Make the middle transparent
-      for _, mode in pairs(theme) do
-        if type(mode) == "table" and mode.c then
-          mode.c.bg = "NONE"
-        end
-      end
-      return theme
+      return build_theme()
     end
 
     -- Status line while the cursor is in the file tree:  NORMAL  Filesystem
     local neo_tree_extension = {
       filetypes = { "neo-tree" },
       sections = {
-        lualine_a = { { "mode", separator = { right = "" } } },
-        lualine_b = { { function() return "Filesystem" end, separator = { right = "" } } },
+        lualine_a = { { "mode", separator = { right = "" } } },
+        lualine_b = { { function() return "Filesystem" end, separator = { right = "" } } },
       },
     }
 
@@ -93,7 +88,7 @@ return {
     local terminal_extension = {
       filetypes = { "toggleterm" },
       sections = {
-        lualine_a = { { "mode", separator = { right = "" } } },
+        lualine_a = { { "mode", separator = { right = "" } } },
       },
     }
 
@@ -102,46 +97,37 @@ return {
             options = {
                     theme = transparent_theme(),
                     icons_enabled = true,
-                    component_separators = {left = '', right = '|'},
-                    section_separators = {left = '', right = ''},
+                    component_separators = {left = '', right = ''},
+                    section_separators = {left = '', right = ''},
                     globalstatus = true,
             },
             sections = {
                     lualine_a = {{'mode',
-                                   separator = {right = ''}
+                                   separator = {right = ''}
                                 }},
                     lualine_b = {{'filename',
                                    path = 0,
                                    symbols = {modified = '󰝦 ',
-                                              readonly = '󰴅 ',
-                                              unnamed = ' 󱍢 ',
+                                              readonly = '',
+                                              unnamed = '󱍢 ',
                                               newfile = '󰎔 ',
                                              },
-                                   separator = {right = ''}
+                                   separator = {right = ''}
                                 }},
                     lualine_c = {{'filetype',
-                                   color = {fg = '#ffffff'}
-                                }},
-                    lualine_x = {{'fileformat',
                                    color = {fg = '#ffffff'},
-                                   symbols = {unix = ' '}}},
-                    lualine_y = {'branch',
-                                {'diff',
-                                  colored = true,
-                                  diff_color = {
-                                    added = 'LuaLineDiffAdd',
-                                    modified = 'LuaLineDiffChange',
-                                    removed = 'LuaLineDiffDelete'},
-                                  symbols = {
-                                    added = '+',
-                                    modified = '~',
-                                    removed = 'x'
-                                  },
+                                   cond = is_file
+                                }},
+                    lualine_x = {{'progress',
+                                   color = x_color(),
+                                   separator = {left = ''}
+                                }},
+                    lualine_y = {{'location',
+                                   color = y_color(),
+                                   separator = {left = ''}
                                 }},
 
-                    lualine_z = {'progress',
-                                 'location',
-                                {'datetime',
+                    lualine_z = {{'datetime',
                                   style = "%H:%M:%S  %d/%m/%y"
                                 }},
             },

@@ -9,28 +9,12 @@ _BOLD=$(tput bold)
 
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h:\[\033[01;34m\] \W \[\033[01;32m\]>> ${_BOLD}${_WHITE} '
 
-# Dotfiles git config
-alias config='/usr/bin/git --git-dir=~/.cfg/ --work-tree=~/.config/'
-
 # USB mounting and unmounting
 alias mountusb='sudo mount -t ntfs-3g /dev/sdb1 /mnt/tmp'
 alias unmount='sudo umount /mnt/tmp'
 
-# OpenFOAM and ITHACA-FV
-alias openfoam='source ~/Libraries/OpenFOAM-v2212/etc/bashrc && cd $WM_PROJECT_DIR/run'
-alias ithaca='source ~/Libraries/ITHACA-FV/etc/bashrc && cd ~/Libraries/ITHACA-FV/tutorials'
-alias foamclear='foamCleanPolyMesh && foamListTimes -rm && clear'
-alias foambuild='blockMesh && setExprFields && clear'
-alias foamvideo='cd animation && ffmpeg -framerate 50 -i 's%3d.png' animation.mp4' # To make the gif out of the mp4 video go to https://ezgif.com/video-to-gif
-alias itclear='rm -r ITHACAoutput'
-alias itbuild='touch ITHACAoutput/Offline/offline.foam && touch ITHACAoutput/Online/online.foam && touch ITHACAoutput/POD/modes.foam'
-alias sweep='wclean && itclear && foamclear'
-
 # Zotero
 alias zotero='cd ~/.config/zotero/ && zotero'
-
-# LaTex
-alias inittex='cp ~/.config/latex/{style.sty,main.tex} . && cp -r ~/.config/latex/sections .'
 
 # Kitty image renderer
 alias showme='kitty +kitten icat'
@@ -40,7 +24,6 @@ alias music='mpd && rmpc'
 
 # Frequently visited directories
 alias home='cd ~'
-alias ds='cd ~/Libraries/STEWS'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

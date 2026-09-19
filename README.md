@@ -22,25 +22,6 @@
 #### Rofi
 - `Alt + Space` = launch
 
-### [Zathura](./instructions/Zathura.md) keybindings
-- `j` = scroll down
-- `k` = scroll up 
-- `J` = previous page 
-- `K` = following page 
-- `nG` = n-th page 
-- `P` = snaps current page 
-- `s` = fit width 
-- `a` = fit page 
-- `?` = search prompt 
-- `n` = previous match in the search results
-- `N` = next match in the search results
-- `+,-` = zoom in, out 
-- `Esc` = abort 
-- `q` = quit 
-- `F11` = toggle fullscreen/normal mode 
-- `ctrl+n` = toggle statusbar 
-- `ctrl+r` = toggle inverted colors mode 
-
 ### [Neovim](./instructions/Neovim.md) keybindings, snippets and shortcuts
 
 #### Normal mode
@@ -54,6 +35,17 @@
 - 2 = go to the end of the line
 - w = shuffle forward by words
 - b = shuffle backward by words
+- <leader>h = focus on the minimap
+- <leader>b = toggle minimap
+- <leader>f = search for a word in a file
+- <leader>g = search for a word across a project
+
+#### REPL (iron)
+- <leader>rr = toggles the REPL
+- <leader>rl = sends current line
+- <leader>rf = sends the whole file
+- <leader>ru = sends everything up to the cursor
+- <leader>ro = focus on the REPL
 
 #### LaTex (vimtex)
 - \ll = compile target
@@ -73,12 +65,6 @@
 - thmcont = Theorem continued
 - interp = Interpretation environment
 - interpcont = Continued interpretation
-
-#### Zotero (zotcite)
-- <leader>zi = print title of the ref
-- <leader>za = print full details of the ref
-- <leader>zo = openf PDF of the ref
-- <C-Space> = complete the ref
 
 #### File explorer (nvim-tree)
 - <leader>e = toggle tree visibility

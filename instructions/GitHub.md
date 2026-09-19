@@ -51,5 +51,3 @@ git checkout --track origin/name-of-the-branch
 
 ## Workflow
 ![git_workflow](../figures/git_workflow.gif)
-
-

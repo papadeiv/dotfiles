@@ -17,11 +17,14 @@ map("n", "2", "$", { desc = "Go to end of line" })
 
 -- Windows ----------------------------------------------------------------------
 -- Move to the previous window: with the tree and one file open, this switches
--- between them. Floating windows (minimap, popups) are skipped.
+-- between them. The minimap and floating windows are skipped
+-- (<leader>h moves into the minimap).
 -- (In insert mode <S-Tab> is still the snippet jump.)
 map("n", "<S-Tab>", function()
   local wins = vim.tbl_filter(function(win)
-    return vim.api.nvim_win_get_config(win).relative == "" -- not floating
+    local floating = vim.api.nvim_win_get_config(win).relative ~= ""
+    local minimap = vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "neominimap"
+    return not floating and not minimap
   end, vim.api.nvim_tabpage_list_wins(0))
 
   local current = vim.api.nvim_get_current_win()
